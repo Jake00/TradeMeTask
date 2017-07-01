@@ -20,8 +20,19 @@ final class APIClient {
     
     let session: URLSession = {
         let configuration = URLSessionConfiguration.default
+        
+        // Not really comfortable having these here, committed in the source repo and also in plaintext.
+        // I am assuming that using a more secure approach is out of scope for this sample application,
+        // since there is no specification for handling these.
+        let consumerKey = "978145F1EA9F6C2ED3423F261D4419E5"
+        let consumerSecret = "DE5A671CC22B6936C493D8F6BAABB620"
+        
         configuration.httpAdditionalHeaders = [
-            "accept": "application/json"
+            "accept": "application/json",
+            "Authorization":
+                "OAuth oauth_consumer_key=\"\(consumerKey)\", "
+                    + "oauth_signature_method=\"PLAINTEXT\", "
+                    + "oauth_signature=\"\(consumerSecret)&\""
         ]
         return URLSession(configuration: configuration, delegate: nil, delegateQueue: nil)
     }()
@@ -65,6 +76,9 @@ final class APIClient {
         }
     }
     
+    /**
+     Send a constructed request. This is the primitive method that all endpoint routes call through.
+     */
     @discardableResult
     func sendRequest(
         _ request: Request,
