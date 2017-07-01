@@ -15,6 +15,7 @@
 		235D87D91F07594200FD6956 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D61F07594200FD6956 /* APIClient.swift */; };
 		235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D71F07594200FD6956 /* NetworkOperation.swift */; };
 		235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */; };
+		235D87DF1F0762CF00FD6956 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -40,6 +41,7 @@
 		235D87D61F07594200FD6956 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
 		235D87D71F07594200FD6956 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Endpoints.swift"; sourceTree = "<group>"; };
+		235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = Carthage/Build/iOS/BoltsSwift.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +49,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				235D87DF1F0762CF00FD6956 /* BoltsSwift.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +68,7 @@
 			children = (
 				235D87991F074F8100FD6956 /* JakesTradeMe */,
 				235D87AE1F074F8100FD6956 /* JakesTradeMeTests */,
+				235D87DD1F0762B200FD6956 /* Frameworks */,
 				235D87981F074F8100FD6956 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -166,6 +170,14 @@
 			path = APIClient;
 			sourceTree = "<group>";
 		};
+		235D87DD1F0762B200FD6956 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -177,6 +189,7 @@
 				235D87CD1F07521500FD6956 /* SwiftLint */,
 				235D87941F074F8100FD6956 /* Frameworks */,
 				235D87951F074F8100FD6956 /* Resources */,
+				235D87E01F07630700FD6956 /* Carthage Copy Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,6 +293,21 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+		235D87E01F07630700FD6956 /* Carthage Copy Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"$(SRCROOT)/Carthage/Build/iOS/BoltsSwift.framework",
+			);
+			name = "Carthage Copy Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "/usr/local/bin/carthage copy-frameworks";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -426,6 +454,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CQSYPH2WC6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/JakesTradeMe/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -440,6 +472,10 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = CQSYPH2WC6;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/iOS",
+				);
 				INFOPLIST_FILE = "$(SRCROOT)/JakesTradeMe/Supporting Files/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
