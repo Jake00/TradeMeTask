@@ -11,6 +11,10 @@
 		235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87BB1F0750ED00FD6956 /* AppDelegate.swift */; };
 		235D87C91F0750ED00FD6956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 235D87C01F0750ED00FD6956 /* Assets.xcassets */; };
 		235D87CA1F0750ED00FD6956 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 235D87C11F0750ED00FD6956 /* LaunchScreen.storyboard */; };
+		235D87D81F07594200FD6956 /* APIClient+Logging.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D51F07594200FD6956 /* APIClient+Logging.swift */; };
+		235D87D91F07594200FD6956 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D61F07594200FD6956 /* APIClient.swift */; };
+		235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D71F07594200FD6956 /* NetworkOperation.swift */; };
+		235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,6 +36,10 @@
 		235D87C01F0750ED00FD6956 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		235D87C21F0750ED00FD6956 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		235D87C51F0750ED00FD6956 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		235D87D51F07594200FD6956 /* APIClient+Logging.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Logging.swift"; sourceTree = "<group>"; };
+		235D87D61F07594200FD6956 /* APIClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		235D87D71F07594200FD6956 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
+		235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Endpoints.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -118,6 +126,7 @@
 		235D87BE1F0750ED00FD6956 /* Services */ = {
 			isa = PBXGroup;
 			children = (
+				235D87D41F07594200FD6956 /* APIClient */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -144,6 +153,17 @@
 			children = (
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		235D87D41F07594200FD6956 /* APIClient */ = {
+			isa = PBXGroup;
+			children = (
+				235D87D61F07594200FD6956 /* APIClient.swift */,
+				235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */,
+				235D87D51F07594200FD6956 /* APIClient+Logging.swift */,
+				235D87D71F07594200FD6956 /* NetworkOperation.swift */,
+			);
+			path = APIClient;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -268,7 +288,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */,
 				235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */,
+				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
+				235D87D81F07594200FD6956 /* APIClient+Logging.swift in Sources */,
+				235D87D91F07594200FD6956 /* APIClient.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
