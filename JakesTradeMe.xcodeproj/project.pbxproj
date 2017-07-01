@@ -11,7 +11,6 @@
 		235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87BB1F0750ED00FD6956 /* AppDelegate.swift */; };
 		235D87C91F0750ED00FD6956 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 235D87C01F0750ED00FD6956 /* Assets.xcassets */; };
 		235D87CA1F0750ED00FD6956 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 235D87C11F0750ED00FD6956 /* LaunchScreen.storyboard */; };
-		235D87CC1F0750ED00FD6956 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 235D87C51F0750ED00FD6956 /* Info.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -155,6 +154,7 @@
 			buildConfigurationList = 235D87B41F074F8100FD6956 /* Build configuration list for PBXNativeTarget "JakesTradeMe" */;
 			buildPhases = (
 				235D87931F074F8100FD6956 /* Sources */,
+				235D87CD1F07521500FD6956 /* SwiftLint */,
 				235D87941F074F8100FD6956 /* Frameworks */,
 				235D87951F074F8100FD6956 /* Resources */,
 			);
@@ -232,7 +232,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				235D87CC1F0750ED00FD6956 /* Info.plist in Resources */,
 				235D87C91F0750ED00FD6956 /* Assets.xcassets in Resources */,
 				235D87CA1F0750ED00FD6956 /* LaunchScreen.storyboard in Resources */,
 			);
@@ -246,6 +245,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		235D87CD1F07521500FD6956 /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		235D87931F074F8100FD6956 /* Sources */ = {
