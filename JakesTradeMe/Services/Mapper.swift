@@ -45,7 +45,8 @@ final class Mapper {
             
             // Special case handling of top level containing 'Root' element:
             // https://developer.trademe.co.nz/api-reference/catalogue-methods/retrieve-general-categories/
-            // "If this parameter ['number'] is empty, it returns a fictional category named “Root” with all the top categories included as subcategories."
+            // "If this parameter ['number'] is empty, it returns a fictional category named “Root” with 
+            // all the top categories included as subcategories."
             // We map all of the subcategories and return them, ignoring the root element.
             guard let id = Category.id(json: json), !id.isEmpty else {
                 return try Category.subcategories(json: json)
@@ -70,7 +71,7 @@ final class Mapper {
         }
         
         let category = existing.first { $0.number == number }
-            ?? Category.create(in: context, id: number)
+            ?? Category.create(in: context, number: number)
         
         category.update(json: json)
         

@@ -54,9 +54,9 @@ extension Category {
 
 extension Category {
     
-    static func create(in context: NSManagedObjectContext, id: String) -> Category {
+    static func create(in context: NSManagedObjectContext, number: String) -> Category {
         let category: Category = Category.create(in: context)
-        category.number = id
+        category.number = number
         return category
     }
     
@@ -74,7 +74,8 @@ extension Category {
     static func id(json: JSON) -> String? {
         // The ID for a category is changing:
         // https://developer.trademe.co.nz/api-reference/catalogue-methods/retrieve-general-categories/
-        // "We plan to change this to a numeric identifier (e.g. “6076”) so you should ensure you can cope with both formats."
+        // "We plan to change this to a numeric identifier (e.g. “6076”) so you should ensure you can 
+        // cope with both formats."
         guard let id = json["Number"] else { return nil }
         return id as? String ?? (id as? Int).map(String.init)
     }

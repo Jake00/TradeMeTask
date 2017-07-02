@@ -70,9 +70,13 @@ final class APIClient {
         var errorDescription: String? {
             switch self {
             case .emptyResponse:
-                return NSLocalizedString("api_error.empty_response", value: "There was no data returned.", comment: "Unexpected empty response error message.")
+                return NSLocalizedString("api_error.empty_response",
+                                         value: "There was no data returned.",
+                                         comment: "Unexpected empty response error message.")
             case .invalidResponse:
-                return NSLocalizedString("api_error.invalid_response", value: "Received an invalid response.", comment: "Invalid response error message.")
+                return NSLocalizedString("api_error.invalid_response",
+                                         value: "Received an invalid response.",
+                                         comment: "Invalid response error message.")
             }
         }
     }
