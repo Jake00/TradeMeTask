@@ -9,7 +9,7 @@
 import BoltsSwift
 import CoreData.NSManagedObject
 
-extension APIClient {
+extension APIClient: RemoteDataProvider {
     
     /**
      Requests either a specified category, or if `number` is nil, the master list of all categories.
@@ -20,7 +20,7 @@ extension APIClient {
      [Retrieve general categories]
      (https://developer.trademe.co.nz/api-reference/catalogue-methods/retrieve-general-categories/)
      */
-    func getCategories(number: String? = nil) -> Task<[Category]> {
+    func getCategories(number: String?) -> Task<[Category]> {
         let request = Request(.get, "Categories/\(number ?? "0").json")
         return sendJSONRequest(request)
             .continueOnSuccessWith(.immediate, continuation: mapper.mapCategories)

@@ -13,10 +13,28 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     
+    private let dataClient = CoreDataClient()
+    
     func application(
         _ application: UIApplication,
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
         ) -> Bool {
+        
+        let provider = APIClient(
+            base: .develop,
+            jsonContext: dataClient.jsonContext,
+            viewContext: dataClient.viewContext)
+        
+        let listingsViewController = CategoriesViewController(provider: provider)
+        
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [listingsViewController]
+        
+        let splitViewController = UISplitViewController()
+        splitViewController.viewControllers = [navigationController]
+        splitViewController.preferredDisplayMode = .allVisible
+        
+        window?.rootViewController = splitViewController
         
         return true
     }

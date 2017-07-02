@@ -26,6 +26,12 @@
 		235D880C1F08A79100FD6956 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88071F08A79100FD6956 /* Listing.swift */; };
 		235D880D1F08A79100FD6956 /* SearchParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88091F08A79100FD6956 /* SearchParameters.swift */; };
 		235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D880E1F08A7A300FD6956 /* SearchResults.swift */; };
+		235D88191F08AD3400FD6956 /* CategoriesDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88131F08AD3400FD6956 /* CategoriesDataSource.swift */; };
+		235D881A1F08AD3400FD6956 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88141F08AD3400FD6956 /* CategoriesViewController.swift */; };
+		235D881F1F08AD6800FD6956 /* ListingsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D881E1F08AD6800FD6956 /* ListingsViewController.swift */; };
+		235D88211F08AD7B00FD6956 /* ListingsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88201F08AD7B00FD6956 /* ListingsDataSource.swift */; };
+		235D88271F08AEF400FD6956 /* RemoteDataProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88261F08AEF400FD6956 /* RemoteDataProvider.swift */; };
+		235D882B1F08B85400FD6956 /* Task+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D882A1F08B85400FD6956 /* Task+Void.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -62,6 +68,12 @@
 		235D88071F08A79100FD6956 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
 		235D88091F08A79100FD6956 /* SearchParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameters.swift; sourceTree = "<group>"; };
 		235D880E1F08A7A300FD6956 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
+		235D88131F08AD3400FD6956 /* CategoriesDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesDataSource.swift; sourceTree = "<group>"; };
+		235D88141F08AD3400FD6956 /* CategoriesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
+		235D881E1F08AD6800FD6956 /* ListingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingsViewController.swift; sourceTree = "<group>"; };
+		235D88201F08AD7B00FD6956 /* ListingsDataSource.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingsDataSource.swift; sourceTree = "<group>"; };
+		235D88261F08AEF400FD6956 /* RemoteDataProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteDataProvider.swift; sourceTree = "<group>"; };
+		235D882A1F08B85400FD6956 /* Task+Void.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+Void.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -138,6 +150,7 @@
 			children = (
 				235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */,
 				235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */,
+				235D882A1F08B85400FD6956 /* Task+Void.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -155,6 +168,7 @@
 			isa = PBXGroup;
 			children = (
 				235D87D41F07594200FD6956 /* APIClient */,
+				235D88261F08AEF400FD6956 /* RemoteDataProvider.swift */,
 				235D87E41F086E6A00FD6956 /* CoreDataClient.swift */,
 				235D87E61F0870AE00FD6956 /* Mapper.swift */,
 			);
@@ -174,6 +188,8 @@
 		235D87C61F0750ED00FD6956 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				235D88101F08AD3400FD6956 /* Categories */,
+				235D88161F08AD3400FD6956 /* Listings */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -222,6 +238,24 @@
 				235D880E1F08A7A300FD6956 /* SearchResults.swift */,
 			);
 			path = Search;
+			sourceTree = "<group>";
+		};
+		235D88101F08AD3400FD6956 /* Categories */ = {
+			isa = PBXGroup;
+			children = (
+				235D88141F08AD3400FD6956 /* CategoriesViewController.swift */,
+				235D88131F08AD3400FD6956 /* CategoriesDataSource.swift */,
+			);
+			path = Categories;
+			sourceTree = "<group>";
+		};
+		235D88161F08AD3400FD6956 /* Listings */ = {
+			isa = PBXGroup;
+			children = (
+				235D881E1F08AD6800FD6956 /* ListingsViewController.swift */,
+				235D88201F08AD7B00FD6956 /* ListingsDataSource.swift */,
+			);
+			path = Listings;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +398,9 @@
 			files = (
 				235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */,
 				235D880B1F08A79100FD6956 /* JakesTradeMe.xcdatamodeld in Sources */,
+				235D881A1F08AD3400FD6956 /* CategoriesViewController.swift in Sources */,
 				235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */,
+				235D88211F08AD7B00FD6956 /* ListingsDataSource.swift in Sources */,
 				235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */,
 				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
 				235D880C1F08A79100FD6956 /* Listing.swift in Sources */,
@@ -374,9 +410,13 @@
 				235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */,
 				235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */,
 				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
+				235D88271F08AEF400FD6956 /* RemoteDataProvider.swift in Sources */,
 				235D880A1F08A79100FD6956 /* Category.swift in Sources */,
 				235D87D91F07594200FD6956 /* APIClient.swift in Sources */,
 				235D87E51F086E6A00FD6956 /* CoreDataClient.swift in Sources */,
+				235D88191F08AD3400FD6956 /* CategoriesDataSource.swift in Sources */,
+				235D881F1F08AD6800FD6956 /* ListingsViewController.swift in Sources */,
+				235D882B1F08B85400FD6956 /* Task+Void.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
