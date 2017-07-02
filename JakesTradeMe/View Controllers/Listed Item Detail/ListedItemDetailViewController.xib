@@ -16,6 +16,7 @@
                 <outlet property="headerImageView" destination="QFW-Ym-fOo" id="eQv-WB-qHx"/>
                 <outlet property="headerSubtitleLabel" destination="E2s-hx-23G" id="HXr-3l-cKv"/>
                 <outlet property="headerTitleLabel" destination="6iF-k8-Zob" id="Gh6-tt-BMt"/>
+                <outlet property="startingPriceLabel" destination="par-iC-qBH" id="fVw-Yd-1Fv"/>
                 <outlet property="view" destination="iN0-l3-epB" id="Zhw-ii-zYo"/>
                 <outletCollection property="loadingViews" destination="6eE-Rl-Ja1" collectionClass="NSMutableArray" id="cIp-YN-QyM"/>
                 <outletCollection property="loadingViews" destination="rkh-Oz-nWE" collectionClass="NSMutableArray" id="JsZ-hI-FeJ"/>
@@ -51,6 +52,12 @@
                     <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <nil key="highlightedColor"/>
                 </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="[Starting price]" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="par-iC-qBH">
+                    <rect key="frame" x="8" y="268.5" width="359" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
                 <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" animating="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="6eE-Rl-Ja1">
                     <rect key="frame" x="142" y="92" width="20" height="20"/>
                 </activityIndicatorView>
@@ -69,7 +76,10 @@
                 <constraint firstItem="yNv-n0-ixw" firstAttribute="top" secondItem="E2s-hx-23G" secondAttribute="bottom" constant="2" id="Gzy-VL-JeB"/>
                 <constraint firstItem="6iF-k8-Zob" firstAttribute="top" secondItem="QFW-Ym-fOo" secondAttribute="bottom" constant="10" id="H2p-Ae-6FG"/>
                 <constraint firstAttribute="trailingMargin" secondItem="6iF-k8-Zob" secondAttribute="trailing" id="HML-ee-c6I"/>
+                <constraint firstItem="par-iC-qBH" firstAttribute="top" secondItem="yNv-n0-ixw" secondAttribute="bottom" constant="4" id="OwW-3r-bgB"/>
+                <constraint firstItem="par-iC-qBH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="Pbr-WQ-BH0"/>
                 <constraint firstItem="rkh-Oz-nWE" firstAttribute="centerY" secondItem="QFW-Ym-fOo" secondAttribute="centerY" id="TsX-Wr-eJu"/>
+                <constraint firstAttribute="trailingMargin" secondItem="par-iC-qBH" secondAttribute="trailing" id="X5j-5r-Gn0"/>
                 <constraint firstItem="E2s-hx-23G" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leadingMargin" id="b1s-go-eM1"/>
                 <constraint firstItem="rkh-Oz-nWE" firstAttribute="leading" secondItem="6eE-Rl-Ja1" secondAttribute="trailing" constant="4" id="bMB-s9-scc"/>
                 <constraint firstItem="E2s-hx-23G" firstAttribute="top" secondItem="6iF-k8-Zob" secondAttribute="bottom" constant="2" id="dKL-vK-nBh"/>

@@ -15,6 +15,7 @@ class ListedItemDetailViewController: UIViewController, Loadable {
     @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerSubtitleLabel: UILabel!
     @IBOutlet weak var headerIdLabel: UILabel!
+    @IBOutlet weak var startingPriceLabel: UILabel!
     @IBOutlet var loadingViews: [UIView]!
     
     var listedItemDetail: ListedItemDetail?
@@ -62,11 +63,29 @@ class ListedItemDetailViewController: UIViewController, Loadable {
     func updateViews() {
         headerTitleLabel.text = listedItemDetail?.title
         headerSubtitleLabel.text = listedItemDetail?.subtitle
-        let idFormat = NSLocalizedString("listed_item_detail.id_format",
-                                         value: "Listing id: %ld",
-                                         comment: "Listed item format for displaying the id. eg. 'Listing id: '5741282")
-        headerIdLabel.text = listedItemDetail.map { String.localizedStringWithFormat(idFormat, $0.id) }
         headerImageView.setImage(url: listedItemDetail?.photos.first?.fullSize)
+        
+        if let listedItemDetail = listedItemDetail {
+            let idFormat = NSLocalizedString(
+                "listed_item_detail.id_format",
+                value: "Listing id: %ld",
+                comment: "Listed item format for displaying the id. eg. 'Listing id: 5741282'")
+            headerIdLabel.text = String.localizedStringWithFormat(idFormat, listedItemDetail.id)
+            
+            let startingPriceFormat = NSLocalizedString(
+                "listed_item_detail.starting_price_format",
+                value: "Starting price: %@",
+                comment: "Starting price format. eg. 'Starting price: $100'")
+            
+            let startingPriceValue = Formatters.decimal.string(
+                from: listedItemDetail.startPrice ?? 0) ?? ""
+            
+            startingPriceLabel.text = String.localizedStringWithFormat(startingPriceFormat,
+                                                                       startingPriceValue)
+        } else {
+            headerIdLabel.text = nil
+            startingPriceLabel.text = nil
+        }
     }
     
     // MARK: - Fetching

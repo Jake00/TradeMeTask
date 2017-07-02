@@ -43,6 +43,7 @@
 		23E939B81F08EDCA001F5424 /* ListedItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939B71F08EDCA001F5424 /* ListedItemDetailViewController.swift */; };
 		23E939BA1F08EE0B001F5424 /* ListedItemDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23E939B91F08EE0B001F5424 /* ListedItemDetailViewController.xib */; };
 		23E939BC1F08F437001F5424 /* ListingPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939BB1F08F437001F5424 /* ListingPhoto.swift */; };
+		23E939BE1F08FC35001F5424 /* Formatters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939BD1F08FC35001F5424 /* Formatters.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -96,6 +97,7 @@
 		23E939B71F08EDCA001F5424 /* ListedItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListedItemDetailViewController.swift; sourceTree = "<group>"; };
 		23E939B91F08EE0B001F5424 /* ListedItemDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListedItemDetailViewController.xib; sourceTree = "<group>"; };
 		23E939BB1F08F437001F5424 /* ListingPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingPhoto.swift; sourceTree = "<group>"; };
+		23E939BD1F08FC35001F5424 /* Formatters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Formatters.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -163,6 +165,7 @@
 			isa = PBXGroup;
 			children = (
 				235D87BB1F0750ED00FD6956 /* AppDelegate.swift */,
+				23E939BD1F08FC35001F5424 /* Formatters.swift */,
 			);
 			path = Application;
 			sourceTree = "<group>";
@@ -464,6 +467,7 @@
 				235D880D1F08A79100FD6956 /* SearchParameters.swift in Sources */,
 				235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */,
 				23E939B01F08E741001F5424 /* ListedItemDetail.swift in Sources */,
+				23E939BE1F08FC35001F5424 /* Formatters.swift in Sources */,
 				23E939B81F08EDCA001F5424 /* ListedItemDetailViewController.swift in Sources */,
 				235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */,
 				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
