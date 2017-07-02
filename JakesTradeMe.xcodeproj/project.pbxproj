@@ -22,6 +22,7 @@
 		235D87E91F08751200FD6956 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E81F08751200FD6956 /* Category.swift */; };
 		235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */; };
 		235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */; };
+		235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EE1F088BA800FD6956 /* APIClient+TaskResponse.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -54,6 +55,7 @@
 		235D87E81F08751200FD6956 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Perform.swift"; sourceTree = "<group>"; };
 		235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Create.swift"; sourceTree = "<group>"; };
+		235D87EE1F088BA800FD6956 /* APIClient+TaskResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+TaskResponse.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 			isa = PBXGroup;
 			children = (
 				235D87D61F07594200FD6956 /* APIClient.swift */,
+				235D87EE1F088BA800FD6956 /* APIClient+TaskResponse.swift */,
 				235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */,
 				235D87D51F07594200FD6956 /* APIClient+Logging.swift */,
 				235D87D71F07594200FD6956 /* NetworkOperation.swift */,
@@ -340,6 +343,7 @@
 				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
 				235D87D81F07594200FD6956 /* APIClient+Logging.swift in Sources */,
 				235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */,
+				235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */,
 				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
 				235D87E91F08751200FD6956 /* Category.swift in Sources */,
 				235D87D91F07594200FD6956 /* APIClient.swift in Sources */,

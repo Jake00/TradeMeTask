@@ -7,10 +7,23 @@
 //
 
 import Foundation
+import CoreData.NSManagedObjectContext
 
 final class APIClient {
     
-    var base: Base = .develop
+    // MARK: - Init
+    
+    let base: Base
+    let mapper: Mapper
+    let viewContext: NSManagedObjectContext
+    
+    init(base: Base, jsonContext: NSManagedObjectContext, viewContext: NSManagedObjectContext) {
+        self.base = base
+        self.viewContext = viewContext
+        self.mapper = Mapper(context: jsonContext)
+    }
+    
+    // MARK: -
     
     let queue: OperationQueue = {
         let queue = OperationQueue()

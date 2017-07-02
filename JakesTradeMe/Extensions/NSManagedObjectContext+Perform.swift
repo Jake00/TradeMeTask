@@ -33,11 +33,13 @@ extension NSManagedObjectContext {
     }
     
     // Non throwing variant
-    func performAndWait<T>(_ block: @escaping (NSManagedObjectContext) -> T) -> T {
-        var value: T?
-        performAndWait { () -> Void in
-            value = block(self)
+    func performAndWaitWithResult<T>(_ block: (NSManagedObjectContext) -> T) -> T {
+        return withoutActuallyEscaping(block) { block in
+            var value: T?
+            performAndWait { () -> Void in
+                value = block(self)
+            }
+            return value!
         }
-        return value!
     }
 }
