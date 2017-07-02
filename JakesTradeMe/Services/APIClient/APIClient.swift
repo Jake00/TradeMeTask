@@ -50,6 +50,26 @@ final class APIClient {
         }
     }
     
+    enum Errors: Error, LocalizedError {
+        case emptyResponse
+        case invalidResponse
+        
+        var errorDescription: String? {
+            switch self {
+            case .emptyResponse:
+                return NSLocalizedString("api_error.empty_response", value: "There was no data returned.", comment: "Unexpected empty response error message.")
+            case .invalidResponse:
+                return NSLocalizedString("api_error.invalid_response", value: "Received an invalid response.", comment: "Invalid response error message.")
+            }
+        }
+    }
+    
+    /**
+     HTTP Methods supported by `APIClient`.
+     
+     - seealso:
+     [Available HTTP Methods](https://www.w3.org/Protocols/rfc2616/rfc2616-sec9.html)
+     */
     enum Method: String {
         case get = "GET"
         
@@ -60,6 +80,10 @@ final class APIClient {
         }
     }
     
+    /**
+     A Request is used to describe and then build a `URLRequest`.
+     This is done in `APIClient.sendRequest(_:completionHandler:)`.
+     */
     struct Request {
         let method: Method
         let path: String
@@ -77,7 +101,8 @@ final class APIClient {
     }
     
     /**
-     Send a constructed request. This is the primitive method that all endpoint routes call through.
+     Sends a constructed request.
+     This is the primitive method that all endpoint routes call through.
      */
     @discardableResult
     func sendRequest(
@@ -107,6 +132,9 @@ final class APIClient {
         return task
     }
     
+    /**
+     Encodes the provided `URLRequest` using the descripted parameters in the `Request` structure.
+     */
     func encode(_ urlRequest: inout URLRequest, with request: Request, _ url: URL) {
         guard request.method.encodesParametersInURL else {
             if let parameters = request.parameters {

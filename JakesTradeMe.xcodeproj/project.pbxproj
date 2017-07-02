@@ -16,6 +16,12 @@
 		235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D71F07594200FD6956 /* NetworkOperation.swift */; };
 		235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */; };
 		235D87DF1F0762CF00FD6956 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */; };
+		235D87E31F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E11F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld */; };
+		235D87E51F086E6A00FD6956 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E41F086E6A00FD6956 /* CoreDataClient.swift */; };
+		235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E61F0870AE00FD6956 /* Mapper.swift */; };
+		235D87E91F08751200FD6956 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E81F08751200FD6956 /* Category.swift */; };
+		235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */; };
+		235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -42,6 +48,12 @@
 		235D87D71F07594200FD6956 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Endpoints.swift"; sourceTree = "<group>"; };
 		235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = Carthage/Build/iOS/BoltsSwift.framework; sourceTree = "<group>"; };
+		235D87E21F086CEC00FD6956 /* JakesTradeMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JakesTradeMe.xcdatamodel; sourceTree = "<group>"; };
+		235D87E41F086E6A00FD6956 /* CoreDataClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
+		235D87E61F0870AE00FD6956 /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
+		235D87E81F08751200FD6956 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Perform.swift"; sourceTree = "<group>"; };
+		235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Create.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -116,6 +128,8 @@
 		235D87BC1F0750ED00FD6956 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */,
+				235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -123,6 +137,8 @@
 		235D87BD1F0750ED00FD6956 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				235D87E11F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld */,
+				235D87E81F08751200FD6956 /* Category.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -131,6 +147,8 @@
 			isa = PBXGroup;
 			children = (
 				235D87D41F07594200FD6956 /* APIClient */,
+				235D87E41F086E6A00FD6956 /* CoreDataClient.swift */,
+				235D87E61F0870AE00FD6956 /* Mapper.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -317,10 +335,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */,
+				235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */,
 				235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */,
 				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
 				235D87D81F07594200FD6956 /* APIClient+Logging.swift in Sources */,
+				235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */,
+				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
+				235D87E91F08751200FD6956 /* Category.swift in Sources */,
 				235D87D91F07594200FD6956 /* APIClient.swift in Sources */,
+				235D87E51F086E6A00FD6956 /* CoreDataClient.swift in Sources */,
+				235D87E31F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -544,6 +568,19 @@
 			defaultConfigurationIsVisible = 0;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		235D87E11F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				235D87E21F086CEC00FD6956 /* JakesTradeMe.xcdatamodel */,
+			);
+			currentVersion = 235D87E21F086CEC00FD6956 /* JakesTradeMe.xcdatamodel */;
+			path = JakesTradeMe.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = 235D878F1F074F8100FD6956 /* Project object */;
 }
