@@ -37,7 +37,9 @@ extension APIClient: RemoteDataProvider {
      (https://developer.trademe.co.nz/api-reference/search-methods/general-search/)
      */
     func searchListings(using search: SearchParameters) -> Task<SearchResults> {
-        var parameters: Parameters = [:]
+        var parameters: Parameters = [
+            "rows": search.resultsPerPage
+        ]
         if let category = search.categoryNumber {
             parameters["Category"] = category
         }

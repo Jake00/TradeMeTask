@@ -162,11 +162,13 @@ final class APIClient {
         }
         if var components = URLComponents(url: url, resolvingAgainstBaseURL: true),
             request.parameters?.isEmpty == false {
-            guard let parameters = request.parameters as? [String: String] else {
-                fatalError("Only string types are supported in query parameters. "
+            guard let parameters = request.parameters as? [String: URLParameterEncodable] else {
+                fatalError("Only string convertible types are supported in query parameters. "
                     +      "No arrays, dictionaries or other types.")
             }
-            components.queryItems = parameters.map(URLQueryItem.init)
+            components.queryItems = parameters.map {
+                URLQueryItem(name: $0, value: $1.description)
+            }
             urlRequest.url = components.url
         }
     }

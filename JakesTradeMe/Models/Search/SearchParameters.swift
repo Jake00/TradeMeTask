@@ -9,9 +9,11 @@
 struct SearchParameters {
     
     var categoryNumber: String?
+    var resultsPerPage: Int
     
-    init(categoryNumber: String? = nil) {
+    init(categoryNumber: String? = nil, resultsPerPage: Int = 20) {
         self.categoryNumber = categoryNumber
+        self.resultsPerPage = resultsPerPage
     }
 }
 
