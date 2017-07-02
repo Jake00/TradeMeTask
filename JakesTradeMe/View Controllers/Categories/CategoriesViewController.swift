@@ -60,10 +60,16 @@ class CategoriesViewController: UIViewController, Loadable {
         }
     }
     
+    private var isFirstLayout = true
+    
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
         tableView.contentInset.top = headerView.frame.maxY
         tableView.scrollIndicatorInsets.top = headerView.frame.maxY
+        if isFirstLayout {
+            isFirstLayout = false
+            tableView.contentOffset.y = -tableView.contentInset.top
+        }
     }
     
     // MARK: - Subviews init
