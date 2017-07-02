@@ -7,13 +7,24 @@
 //
 
 import UIKit
+import BoltsSwift
+
+protocol ListingsDataSourceDelegate: class {
+    func listingsDataSource(_ dataSource: ListingsDataSource, isFetchingWith task: Task<Void>)
+}
 
 class ListingsDataSource: NSObject {
     
     var listings: [Listing] = []
+    var searchParameters = SearchParameters()
     
-    struct Cells {
-        static let listing = "ListingCell"
+    weak var delegate: ListingsDataSourceDelegate?
+    
+    let listingCellIdentifier = "ListingCell"
+    let loadingCellIdentifier = "LoadingCell"
+    
+    func listing(at indexPath: IndexPath) -> Listing? {
+        return indexPath.row < listings.endIndex ? listings[indexPath.row] : nil
     }
     
     // MARK: - Init
@@ -24,6 +35,27 @@ class ListingsDataSource: NSObject {
         self.provider = provider
         super.init()
     }
+    
+    // MARK: - Fetching
+    
+    func fetchListings(updating tableView: UITableView?) {
+        let task = provider.searchListings(using: searchParameters)
+            .continueOnSuccessWith(.mainThread) { result in
+                let isFirst = self.listings.isEmpty
+                self.listings = result.listings
+                if isFirst, !result.listings.isEmpty {
+                    let indexPaths = (0..<result.listings.endIndex)
+                        .map { IndexPath(row: $0, section: 0) }
+                    tableView?.beginUpdates()
+                    tableView?.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
+                    tableView?.insertRows(at: indexPaths, with: .fade)
+                    tableView?.endUpdates()
+                } else {
+                    tableView?.reloadData()
+                }
+        }
+        delegate?.listingsDataSource(self, isFetchingWith: task.asVoid())
+    }
 }
 
 // MARK: - Table view data source
@@ -31,13 +63,16 @@ class ListingsDataSource: NSObject {
 extension ListingsDataSource: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return listings.count
+        return max(1, listings.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.listing, for: indexPath)
-        let listing = listings[indexPath.row]
-        cell.textLabel?.text = listing.title
+        guard !listings.isEmpty else {
+            return tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath)
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier, for: indexPath)
+        let listing = self.listing(at: indexPath)
+        cell.textLabel?.text = listing?.title
         return cell
     }
 }

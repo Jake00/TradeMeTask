@@ -22,6 +22,10 @@ class CategoriesDataSource: NSObject {
     let categoryCellIdentifier = "CategoryCell"
     let loadingCellIdentifier = "LoadingCell"
     
+    func category(at indexPath: IndexPath) -> Category? {
+        return indexPath.row < categories.endIndex ? categories[indexPath.row] : nil
+    }
+    
     // MARK: - Init
     
     let provider: RemoteDataProvider
@@ -65,8 +69,8 @@ extension CategoriesDataSource: UITableViewDataSource {
             return tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath)
         }
         let cell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier, for: indexPath)
-        let category = categories[indexPath.row]
-        cell.textLabel?.text = category.name
+        let category = self.category(at: indexPath)
+        cell.textLabel?.text = category?.name
         return cell
     }
 }

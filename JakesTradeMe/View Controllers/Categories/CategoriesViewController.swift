@@ -63,11 +63,18 @@ class CategoriesViewController: UIViewController, Loadable {
     
     /* 
      This functionality should be delegated out so that the CategoryVC can be configured
-     to not always to show the ListingsVC when a row is tapped, but is not for the sake 
-     of not making this simple sample project too unwieldy.
+     to not only to show the ListingsVC when a row is tapped, but is not for the sake of
+     not making this simple sample project too unwieldy.
      */
-    func presentListingsViewController() {
+    func presentListingsViewController(category: Category?) {
         let listingsViewController = ListingsViewController(provider: dataSource.provider)
+        listingsViewController.dataSource.searchParameters.categoryNumber = category?.number
+        
+        let titleFormat = NSLocalizedString("listings.title_format",
+                                            value: "Listings for %@",
+                                            comment: "The title format for listings in a category. eg. 'Listings for Art'")
+        listingsViewController.title = String.localizedStringWithFormat(titleFormat, category?.name ?? "")
+        
         let navigationController = UINavigationController()
         navigationController.viewControllers = [listingsViewController]
         showDetailViewController(navigationController, sender: nil)
@@ -78,8 +85,12 @@ class CategoriesViewController: UIViewController, Loadable {
 
 extension CategoriesViewController: UITableViewDelegate {
     
+    func tableView(_ tableView: UITableView, shouldHighlightRowAt indexPath: IndexPath) -> Bool {
+        return dataSource.category(at: indexPath) != nil
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentListingsViewController()
+        presentListingsViewController(category: dataSource.category(at: indexPath))
     }
 }
 
