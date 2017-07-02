@@ -231,7 +231,12 @@ extension UIImageView {
             guard let s = self else { return }
             let setImage = { s.image = image }
             if options.contains(.fade) {
-                UIView.transition(with: s, duration: 0.2, options: .transitionCrossDissolve, animations: setImage, completion: nil)
+                UIView.transition(
+                    with: s,
+                    duration: 0.2,
+                    options: .transitionCrossDissolve,
+                    animations: setImage,
+                    completion: nil)
             } else {
                 setImage()
             }

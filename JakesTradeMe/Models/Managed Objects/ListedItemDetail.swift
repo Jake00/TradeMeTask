@@ -1,5 +1,5 @@
 //
-//  Listing.swift
+//  ListedItemDetail.swift
 //  JakesTradeMe
 //
 //  Created by Jake Bellamy on 2/07/17.
@@ -10,7 +10,7 @@ import CoreData
 
 // MARK: Model properties
 
-class Listing: NSManagedObject {
+class ListedItemDetail: NSManagedObject {
     
     @NSManaged var id: Int64
     @NSManaged var title: String?
@@ -25,36 +25,32 @@ class Listing: NSManagedObject {
     @NSManaged var hasBuyNow: Bool
     @NSManaged var isFeatured: Bool
     @NSManaged var reserveStateRaw: Int64
-    @NSManaged var detail: ListedItemDetail?
+    @NSManaged var listing: Listing?
 }
 
 // MARK: - Wrappers
 
-extension Listing {
-
+extension ListedItemDetail {
+    
     var reserveState: ListingReserveState {
         get { return ListingReserveState(rawValue: reserveStateRaw) ?? .notApplicable }
         set { reserveStateRaw = newValue.rawValue }
-    }
-    
-    var imageURL: URL? {
-        get { return imageURLRaw.flatMap(URL.init(string:)) }
-        set { imageURLRaw = newValue?.absoluteString }
     }
 }
 
 // MARK: - Object context helpers
 
-extension Listing {
+extension ListedItemDetail {
     
-    static func create(in context: NSManagedObjectContext, id: Int64) -> Listing {
-        let listing: Listing = Listing.create(in: context)
+    static func create(in context: NSManagedObjectContext, id: Int64) -> ListedItemDetail {
+        let listing: ListedItemDetail = ListedItemDetail.create(in: context)
         listing.id = id
         return listing
     }
     
-    static func fetchRequest(predicate: NSPredicate? = nil) -> NSFetchRequest<Listing> {
-        let fetchRequest: NSFetchRequest<Listing> = NSFetchRequest(entityName: String(describing: Listing.self))
+    static func fetchRequest(predicate: NSPredicate? = nil) -> NSFetchRequest<ListedItemDetail> {
+        let entityName = String(describing: ListedItemDetail.self)
+        let fetchRequest: NSFetchRequest<ListedItemDetail> = NSFetchRequest(entityName: entityName)
         fetchRequest.predicate = predicate
         return fetchRequest
     }
@@ -62,7 +58,7 @@ extension Listing {
 
 // MARK: - JSON
 
-extension Listing {
+extension ListedItemDetail {
     
     static func id(json: JSON) -> Int64? {
         return (json["ListingId"] as? Int).map(Int64.init)

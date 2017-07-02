@@ -114,11 +114,11 @@ final class Mapper {
     func mapListings(json: [JSON]) throws -> [Listing] {
         return try context.performAndWait { context in
             
-            let listingIDs = json.flatMap(Listing.id)
-            let listingRequest = Listing.fetchRequest(predicate: NSPredicate(format: "id IN %@", listingIDs))
+            let listingIds = json.flatMap(Listing.id)
+            let listingRequest = Listing.fetchRequest(predicate: NSPredicate(format: "id IN %@", listingIds))
             let existingListings = try context.fetch(listingRequest)
             
-            let categoryIds = json.flatMap(Category.id)
+            let categoryIds = json.flatMap(Listing.categoryId)
             let categoriesRequest = Category.fetchRequest(predicate: NSPredicate(format: "number IN %@", categoryIds))
             let existingCategories = try context.fetch(categoriesRequest)
             
@@ -136,4 +136,42 @@ final class Mapper {
             }
         }
     }
+    
+    // MARK: - Listed item detail
+    
+    func mapListedItemDetail(json: Any) throws -> ListedItemDetail {
+        guard let json = json as? JSON else {
+            throw APIClient.Errors.invalidResponse
+        }
+        
+        return try context.performAndWait { context in
+            
+            guard let listedItemDetailId = ListedItemDetail.id(json: json) else {
+                throw APIClient.Errors.emptyResponse
+            }
+            let predicate = NSPredicate(format: "id == %@", listedItemDetailId)
+            
+            let listedItemDetailRequest = ListedItemDetail.fetchRequest(predicate: predicate)
+            let existingListedItemDetail = (try context.fetch(listedItemDetailRequest)).first
+            
+            let listingRequest = Listing.fetchRequest(predicate: predicate)
+            let existingListing = (try context.fetch(listingRequest)).first
+            
+            return try doMappingAndSave {
+                let listedItemDetail = existingListedItemDetail
+                    ?? ListedItemDetail.create(in: context, id: listedItemDetailId)
+                listedItemDetail.update(json: json)
+                listedItemDetail.listing = existingListing
+                
+                if let categoryId = ListedItemDetail.categoryId(json: json) {
+                    let categoryPreciate = NSPredicate(format: "number == %@", categoryId)
+                    let categoryRequest = Category.fetchRequest(predicate: categoryPreciate)
+                    listedItemDetail.category = (try context.fetch(categoryRequest)).first
+                }
+                
+                return listedItemDetail
+            }
+        }
+    }
+    
 }

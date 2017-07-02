@@ -24,7 +24,7 @@ extension APIClient: RemoteDataProvider {
         let request = Request(.get, "Categories/\(number ?? "0").json")
         return sendJSONRequest(request)
             .continueOnSuccessWith(.immediate, continuation: mapper.mapCategories)
-            .continueOnSuccessWith(.mainThread, continuation: moveToViewContext)
+            .continueOnSuccessWith(.mainThread, continuation: moveAllToViewContext)
     }
     
     /**
@@ -50,12 +50,35 @@ extension APIClient: RemoteDataProvider {
                 let listings = try self.mapper.mapListings(json: listingsJSON)
                 return (json, listings)
             }.continueOnSuccessWith(.mainThread) { json, listings in
-                let listings = self.moveToViewContext(listings)
+                let listings = self.moveAllToViewContext(listings)
                 return SearchResults(json: json, listings: listings)
         }
     }
     
-    private func moveToViewContext<T: NSManagedObject>(_ models: [T]) -> [T] {
+    /**
+     Requests the details about a listed item.
+     
+     - parameter id: The listing id to retreive results for.
+     
+     - seealso:
+     [Retrieve the details of a single listing]
+     (https://developer.trademe.co.nz/api-reference/listing-methods/retrieve-the-details-of-a-single-listing/)
+     */
+    func getListedItem(id: Int64) -> Task<ListedItemDetail> {
+        let request = Request(.get, "Listings/\(id)/.json")
+        return sendJSONRequest(request)
+            .continueOnSuccessWith(.immediate, continuation: mapper.mapListedItemDetail)
+            .continueOnSuccessWith(.mainThread, continuation: moveToViewContext)
+    }
+    
+    private func moveToViewContext<T: NSManagedObject>(_ model: T) -> T {
+        return viewContext.performAndWaitWithResult { context in
+            // swiftlint:disable:next force_cast
+            context.object(with: model.objectID) as! T
+        }
+    }
+    
+    private func moveAllToViewContext<T: NSManagedObject>(_ models: [T]) -> [T] {
         return viewContext.performAndWaitWithResult { context in
             // swiftlint:disable:next force_cast
             models.map { context.object(with: $0.objectID) as! T }
