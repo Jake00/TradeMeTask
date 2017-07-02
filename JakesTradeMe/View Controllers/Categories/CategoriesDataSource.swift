@@ -19,9 +19,8 @@ class CategoriesDataSource: NSObject {
     
     weak var delegate: CategoriesDataSourceDelegate?
     
-    struct Cells {
-        static let category = "CategoryCell"
-    }
+    let categoryCellIdentifier = "CategoryCell"
+    let loadingCellIdentifier = "LoadingCell"
     
     // MARK: - Init
     
@@ -41,7 +40,10 @@ class CategoriesDataSource: NSObject {
                 if isFirst, !categories.isEmpty {
                     let indexPaths = (0..<categories.endIndex)
                         .map { IndexPath(row: $0, section: 0) }
+                    tableView?.beginUpdates()
+                    tableView?.deleteRows(at: [IndexPath(row: 0, section: 0)], with: .fade)
                     tableView?.insertRows(at: indexPaths, with: .fade)
+                    tableView?.endUpdates()
                 } else {
                     tableView?.reloadData()
                 }
@@ -55,11 +57,14 @@ class CategoriesDataSource: NSObject {
 extension CategoriesDataSource: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return categories.count
+        return max(1, categories.count)
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: Cells.category, for: indexPath)
+        guard !categories.isEmpty else {
+            return tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath)
+        }
+        let cell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier, for: indexPath)
         let category = categories[indexPath.row]
         cell.textLabel?.text = category.name
         return cell

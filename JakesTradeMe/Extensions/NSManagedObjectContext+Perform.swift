@@ -16,19 +16,21 @@ extension NSManagedObjectContext {
     }
     
     // Throwing variant
-    func performAndWait<T>(_ block: @escaping (NSManagedObjectContext) throws -> T) throws -> T {
-        var value: Either<T, Error>?
-        performAndWait { () -> Void in
-            do {
-                value = try .first(block(self))
-            } catch {
-                value = .other(error)
+    func performAndWait<T>(_ block: (NSManagedObjectContext) throws -> T) throws -> T {
+        return try withoutActuallyEscaping(block) { block in
+            var value: Either<T, Error>?
+            performAndWait { () -> Void in
+                do {
+                    value = try .first(block(self))
+                } catch {
+                    value = .other(error)
+                }
             }
-        }
-        switch value {
-        case .first(let v)?: return v
-        case .other(let e)?: throw e
-        default: fatalError("Result was not set. This should never happen.")
+            switch value {
+            case .first(let v)?: return v
+            case .other(let e)?: throw e
+            default: fatalError("Result was not set. This should never happen.")
+            }
         }
     }
     

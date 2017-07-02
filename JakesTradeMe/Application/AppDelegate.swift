@@ -34,7 +34,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         splitViewController.viewControllers = [navigationController]
         splitViewController.preferredDisplayMode = .allVisible
         
+        window = UIWindow(frame: UIScreen.main.bounds)
         window?.rootViewController = splitViewController
+        window?.makeKeyAndVisible()
         
         return true
     }

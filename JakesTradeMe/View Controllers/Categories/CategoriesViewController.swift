@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import BoltsSwift
 
 class CategoriesViewController: UIViewController {
     
@@ -17,10 +18,10 @@ class CategoriesViewController: UIViewController {
     
     // MARK: - Init
     
-    let dataSource: ListingsDataSource
+    let dataSource: CategoriesDataSource
     
     init(provider: RemoteDataProvider) {
-        self.dataSource = ListingsDataSource(provider: provider)
+        self.dataSource = CategoriesDataSource(provider: provider)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -36,6 +37,16 @@ class CategoriesViewController: UIViewController {
         self.view = tableView
         tableView.dataSource = dataSource
         tableView.delegate = self
+        tableView.register(LoadingCell.self, forCellReuseIdentifier: dataSource.loadingCellIdentifier)
+        tableView.register(UITableViewCell.self, forCellReuseIdentifier: dataSource.categoryCellIdentifier)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if dataSource.categories.isEmpty {
+            dataSource.fetchCategories(updating: tableView)
+        }
     }
 }
 
@@ -44,6 +55,18 @@ class CategoriesViewController: UIViewController {
 extension CategoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+    }
+}
+
+// MARK: - Data source delegate
+
+extension CategoriesViewController: CategoriesDataSourceDelegate {
+    
+    func categoriesDataSource(
+        _ categoriesDataSource: CategoriesDataSource,
+        isFetchingWith task: Task<Void>
+        ) {
         
     }
 }

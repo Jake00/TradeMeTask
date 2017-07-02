@@ -12,6 +12,18 @@ typealias JSON = [String: Any]
 
 final class Mapper {
     
+    func saveContextIfNeeded() throws {
+        if context.hasChanges {
+            try context.save()
+        }
+    }
+    
+    func doMappingAndSave<T>(doMapping: () throws -> T) throws -> T {
+        let categories = try doMapping()
+        try saveContextIfNeeded()
+        return categories
+    }
+    
     // MARK: - Init
     
     let context: NSManagedObjectContext
@@ -49,13 +61,17 @@ final class Mapper {
             // all the top categories included as subcategories."
             // We map all of the subcategories and return them, ignoring the root element.
             guard let id = Category.id(json: json), !id.isEmpty else {
-                return try Category.subcategories(json: json)
-                    .flatMap(doMapping(json:))
+                return try doMappingAndSave {
+                    try Category.subcategories(json: json)
+                        .flatMap(doMapping(json:))
+                }
             }
             
             // There is no root element as a specific category was requested.
             // In this case we map the single category and return it as an array of one.
-            return try doMapping(json: json)
+            return try doMappingAndSave {
+                try doMapping(json: json)
+            }
         }
     }
     
@@ -102,19 +118,21 @@ final class Mapper {
             let listingRequest = Listing.fetchRequest(predicate: NSPredicate(format: "id IN %@", listingIDs))
             let existingListings = try context.fetch(listingRequest)
             
-            let categoryNumbers = json.flatMap(Category.id)
-            let categoriesRequest = Category.fetchRequest(predicate: NSPredicate(format: "number IN %@", categoryNumbers))
+            let categoryIds = json.flatMap(Category.id)
+            let categoriesRequest = Category.fetchRequest(predicate: NSPredicate(format: "number IN %@", categoryIds))
             let existingCategories = try context.fetch(categoriesRequest)
             
-            return json.flatMap { json -> Listing? in
-                guard let id = Listing.id(json: json) else { return nil }
-                
-                let listing = existingListings.first { $0.id == id }
-                    ?? Listing.create(in: context, id: id)
-                
-                listing.update(json: json)
-                listing.category = existingCategories.first { $0.number == listing.categoryNumber }
-                return listing
+            return try doMappingAndSave {
+                json.flatMap { json -> Listing? in
+                    guard let id = Listing.id(json: json) else { return nil }
+                    
+                    let listing = existingListings.first { $0.id == id }
+                        ?? Listing.create(in: context, id: id)
+                    
+                    listing.update(json: json)
+                    listing.category = existingCategories.first { $0.number == listing.categoryNumber }
+                    return listing
+                }
             }
         }
     }
