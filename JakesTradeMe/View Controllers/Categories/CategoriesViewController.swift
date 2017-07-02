@@ -9,12 +9,14 @@
 import UIKit
 import BoltsSwift
 
-class CategoriesViewController: UIViewController {
+class CategoriesViewController: UIViewController, Loadable {
     
     var tableView: UITableView {
         // swiftlint:disable:next force_cast
         return super.view as! UITableView
     }
+    
+    var isLoading = false
     
     // MARK: - Init
     
@@ -63,10 +65,7 @@ extension CategoriesViewController: UITableViewDelegate {
 
 extension CategoriesViewController: CategoriesDataSourceDelegate {
     
-    func categoriesDataSource(
-        _ categoriesDataSource: CategoriesDataSource,
-        isFetchingWith task: Task<Void>
-        ) {
-        
+    func categoriesDataSource(_ dataSource: CategoriesDataSource, isFetchingWith task: Task<Void>) {
+        fetch(task)
     }
 }
