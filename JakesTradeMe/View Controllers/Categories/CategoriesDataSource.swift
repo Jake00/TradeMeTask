@@ -10,7 +10,7 @@ import UIKit
 import BoltsSwift
 
 protocol CategoriesDataSourceDelegate: class {
-    func categoriesDataSource( _ dataSource: CategoriesDataSource, isFetchingWith task: Task<Void>)
+    func categoriesDataSource(_ dataSource: CategoriesDataSource, isFetchingWith task: Task<Void>)
 }
 
 class CategoriesDataSource: NSObject {

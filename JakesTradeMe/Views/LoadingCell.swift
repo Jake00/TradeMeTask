@@ -27,10 +27,10 @@ class LoadingCell: UITableViewCell {
     private func setup() {
         contentView.addLayoutGuide(centerLayoutGuide)
         activityIndicator.startAnimating()
-        titleLabel.text = NSLocalizedString(
-            "loading_cell.loading",
-            value: "Loading...",
-            comment: "Indicator that the application is loading.")
+        titleLabel.textColor = .darkGray
+        titleLabel.text = NSLocalizedString("loading_cell.loading",
+                                            value: "Loading...",
+                                            comment: "Indicator that the application is loading.")
         
         [titleLabel, activityIndicator].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false

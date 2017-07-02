@@ -17,8 +17,8 @@ final class APIClient {
     let mapper: Mapper
     let viewContext: NSManagedObjectContext
     
-    init(base: Base, jsonContext: NSManagedObjectContext, viewContext: NSManagedObjectContext) {
-        self.base = base
+    init(baseURL: Base, jsonContext: NSManagedObjectContext, viewContext: NSManagedObjectContext) {
+        self.base = baseURL
         self.viewContext = viewContext
         self.mapper = Mapper(context: jsonContext)
     }

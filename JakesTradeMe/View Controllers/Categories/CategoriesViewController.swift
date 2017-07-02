@@ -25,6 +25,9 @@ class CategoriesViewController: UIViewController, Loadable {
     init(provider: RemoteDataProvider) {
         self.dataSource = CategoriesDataSource(provider: provider)
         super.init(nibName: nil, bundle: nil)
+        self.title = NSLocalizedString("categories_title",
+                                       value: "Categories",
+                                       comment: "Title of the categories screen")
     }
     
     @available(*, unavailable, message: "init(coder:) is not available. Use init(provider:) instead.")
@@ -37,6 +40,8 @@ class CategoriesViewController: UIViewController, Loadable {
     override func loadView() {
         let tableView = UITableView()
         self.view = tableView
+        tableView.backgroundColor = .offWhite
+        tableView.tableFooterView = UIView()
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.register(LoadingCell.self, forCellReuseIdentifier: dataSource.loadingCellIdentifier)
@@ -49,6 +54,23 @@ class CategoriesViewController: UIViewController, Loadable {
         if dataSource.categories.isEmpty {
             dataSource.fetchCategories(updating: tableView)
         }
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
+    // MARK: - Navigation
+    
+    /* 
+     This functionality should be delegated out so that the CategoryVC can be configured
+     to not always to show the ListingsVC when a row is tapped, but is not for the sake 
+     of not making this simple sample project too unwieldy.
+     */
+    func presentListingsViewController() {
+        let listingsViewController = ListingsViewController(provider: dataSource.provider)
+        let navigationController = UINavigationController()
+        navigationController.viewControllers = [listingsViewController]
+        showDetailViewController(navigationController, sender: nil)
     }
 }
 
@@ -57,7 +79,7 @@ class CategoriesViewController: UIViewController, Loadable {
 extension CategoriesViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        presentListingsViewController()
     }
 }
 

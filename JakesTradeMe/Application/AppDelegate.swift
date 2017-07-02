@@ -20,8 +20,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?
         ) -> Bool {
         
+        // No singletons here :-)
         let provider = APIClient(
-            base: .develop,
+            baseURL: .develop,
             jsonContext: dataClient.jsonContext,
             viewContext: dataClient.viewContext)
         
