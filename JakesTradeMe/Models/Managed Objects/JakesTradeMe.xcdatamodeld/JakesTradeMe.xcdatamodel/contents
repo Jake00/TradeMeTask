@@ -12,6 +12,7 @@
         <attribute name="number" attributeType="String" syncable="YES"/>
         <attribute name="numberId" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="path" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="detailItems" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ListedItemDetail" inverseName="category" inverseEntity="ListedItemDetail" syncable="YES"/>
         <relationship name="listings" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Listing" inverseName="category" inverseEntity="Listing" syncable="YES"/>
         <relationship name="parent" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="subcategories" inverseEntity="Category" syncable="YES"/>
         <relationship name="subcategories" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Category" inverseName="parent" inverseEntity="Category" syncable="YES"/>
@@ -23,12 +24,14 @@
         <attribute name="hasBuyNow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="isFeatured" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="photosJSON" optional="YES" attributeType="Transformable" syncable="YES"/>
         <attribute name="reserveStateRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="startPrice" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
         <attribute name="subtitle" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="title" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="viewCount" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="category" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Category" inverseName="detailItems" inverseEntity="Category" syncable="YES"/>
         <relationship name="listing" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Listing" inverseName="detail" inverseEntity="Listing" syncable="YES"/>
     </entity>
     <entity name="Listing" representedClassName=".Listing" syncable="YES">
@@ -48,8 +51,8 @@
         <relationship name="detail" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="ListedItemDetail" inverseName="listing" inverseEntity="ListedItemDetail" syncable="YES"/>
     </entity>
     <elements>
-        <element name="Category" positionX="-63" positionY="-18" width="128" height="255"/>
+        <element name="Category" positionX="-63" positionY="-18" width="128" height="270"/>
         <element name="Listing" positionX="-45" positionY="99" width="128" height="255"/>
-        <element name="ListedItemDetail" positionX="-45" positionY="144" width="128" height="240"/>
+        <element name="ListedItemDetail" positionX="-45" positionY="144" width="128" height="270"/>
     </elements>
 </model>

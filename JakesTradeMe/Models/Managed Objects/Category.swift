@@ -26,6 +26,7 @@ class Category: NSManagedObject {
     @NSManaged var parent: Category?
     @NSManaged var subcategories: Set<Category>
     @NSManaged var listings: Set<Listing>
+    @NSManaged var detailItems: Set<ListedItemDetail>
 }
 
 // MARK: - Area of business

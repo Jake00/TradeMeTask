@@ -65,7 +65,7 @@ extension APIClient: RemoteDataProvider {
      (https://developer.trademe.co.nz/api-reference/listing-methods/retrieve-the-details-of-a-single-listing/)
      */
     func getListedItem(id: Int64) -> Task<ListedItemDetail> {
-        let request = Request(.get, "Listings/\(id)/.json")
+        let request = Request(.get, "Listings/\(id).json")
         return sendJSONRequest(request)
             .continueOnSuccessWith(.immediate, continuation: mapper.mapListedItemDetail)
             .continueOnSuccessWith(.mainThread, continuation: moveToViewContext)

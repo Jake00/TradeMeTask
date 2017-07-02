@@ -26,6 +26,7 @@ class ListedItemDetail: NSManagedObject {
     @NSManaged var isFeatured: Bool
     @NSManaged var reserveStateRaw: Int64
     @NSManaged var listing: Listing?
+    @NSManaged var photosJSON: [JSON]
 }
 
 // MARK: - Wrappers
@@ -35,6 +36,10 @@ extension ListedItemDetail {
     var reserveState: ListingReserveState {
         get { return ListingReserveState(rawValue: reserveStateRaw) ?? .notApplicable }
         set { reserveStateRaw = newValue.rawValue }
+    }
+    
+    var photos: [ListingPhoto] {
+        return photosJSON.flatMap(ListingPhoto.init(json:))
     }
 }
 
@@ -72,7 +77,6 @@ extension ListedItemDetail {
         title = json["Title"] as? String
         subtitle = json["Subtitle"] as? String
         categoryNumber = json["Category"] as? String
-        imageURLRaw = json["PictureHref"] as? String
         startDate = Map.date(json["StartDate"])
         endDate = Map.date(json["EndDate"])
         startPrice = Map.decimalNumber(json["StartPrice"])
@@ -80,5 +84,6 @@ extension ListedItemDetail {
         hasBuyNow = json["HasBuyNow"] as? Bool ?? false
         isFeatured = json["IsFeatured"] as? Bool ?? false
         reserveStateRaw = (json["ReserveState"] as? Int).map(Int64.init) ?? 0
+        photosJSON = json["Photos"] as? [JSON] ?? []
     }
 }

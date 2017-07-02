@@ -40,6 +40,9 @@
 		23E939B01F08E741001F5424 /* ListedItemDetail.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939AF1F08E741001F5424 /* ListedItemDetail.swift */; };
 		23E939B31F08E7D5001F5424 /* ListingReserveState.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939B21F08E7D5001F5424 /* ListingReserveState.swift */; };
 		23E939B51F08E849001F5424 /* MappingHelpers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939B41F08E849001F5424 /* MappingHelpers.swift */; };
+		23E939B81F08EDCA001F5424 /* ListedItemDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939B71F08EDCA001F5424 /* ListedItemDetailViewController.swift */; };
+		23E939BA1F08EE0B001F5424 /* ListedItemDetailViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 23E939B91F08EE0B001F5424 /* ListedItemDetailViewController.xib */; };
+		23E939BC1F08F437001F5424 /* ListingPhoto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939BB1F08F437001F5424 /* ListingPhoto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -90,6 +93,9 @@
 		23E939AF1F08E741001F5424 /* ListedItemDetail.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListedItemDetail.swift; sourceTree = "<group>"; };
 		23E939B21F08E7D5001F5424 /* ListingReserveState.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingReserveState.swift; sourceTree = "<group>"; };
 		23E939B41F08E849001F5424 /* MappingHelpers.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MappingHelpers.swift; sourceTree = "<group>"; };
+		23E939B71F08EDCA001F5424 /* ListedItemDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListedItemDetailViewController.swift; sourceTree = "<group>"; };
+		23E939B91F08EE0B001F5424 /* ListedItemDetailViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListedItemDetailViewController.xib; sourceTree = "<group>"; };
+		23E939BB1F08F437001F5424 /* ListingPhoto.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingPhoto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -211,6 +217,7 @@
 			children = (
 				235D88101F08AD3400FD6956 /* Categories */,
 				235D88161F08AD3400FD6956 /* Listings */,
+				23E939B61F08EDB9001F5424 /* Listed Item Detail */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -286,8 +293,18 @@
 			isa = PBXGroup;
 			children = (
 				23E939B21F08E7D5001F5424 /* ListingReserveState.swift */,
+				23E939BB1F08F437001F5424 /* ListingPhoto.swift */,
 			);
 			path = Shared;
+			sourceTree = "<group>";
+		};
+		23E939B61F08EDB9001F5424 /* Listed Item Detail */ = {
+			isa = PBXGroup;
+			children = (
+				23E939B71F08EDCA001F5424 /* ListedItemDetailViewController.swift */,
+				23E939B91F08EE0B001F5424 /* ListedItemDetailViewController.xib */,
+			);
+			path = "Listed Item Detail";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -378,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				235D87C91F0750ED00FD6956 /* Assets.xcassets in Resources */,
+				23E939BA1F08EE0B001F5424 /* ListedItemDetailViewController.xib in Resources */,
 				235D87CA1F0750ED00FD6956 /* LaunchScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -439,12 +457,14 @@
 				23E939B51F08E849001F5424 /* MappingHelpers.swift in Sources */,
 				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
 				235D880C1F08A79100FD6956 /* Listing.swift in Sources */,
+				23E939BC1F08F437001F5424 /* ListingPhoto.swift in Sources */,
 				23E939A41F08C1C0001F5424 /* UIViewController+Fetching.swift in Sources */,
 				235D87D81F07594200FD6956 /* APIClient+Logging.swift in Sources */,
 				235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */,
 				235D880D1F08A79100FD6956 /* SearchParameters.swift in Sources */,
 				235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */,
 				23E939B01F08E741001F5424 /* ListedItemDetail.swift in Sources */,
+				23E939B81F08EDCA001F5424 /* ListedItemDetailViewController.swift in Sources */,
 				235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */,
 				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
 				23E939AE1F08D9FF001F5424 /* ListingCell.swift in Sources */,

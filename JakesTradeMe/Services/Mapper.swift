@@ -149,7 +149,7 @@ final class Mapper {
             guard let listedItemDetailId = ListedItemDetail.id(json: json) else {
                 throw APIClient.Errors.emptyResponse
             }
-            let predicate = NSPredicate(format: "id == %@", listedItemDetailId)
+            let predicate = NSPredicate(format: "id == %ld", listedItemDetailId)
             
             let listedItemDetailRequest = ListedItemDetail.fetchRequest(predicate: predicate)
             let existingListedItemDetail = (try context.fetch(listedItemDetailRequest)).first

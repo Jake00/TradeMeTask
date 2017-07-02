@@ -57,6 +57,21 @@ class ListingsViewController: UIViewController, Loadable {
             tableView.deselectRow(at: selectedIndexPath, animated: animated)
         }
     }
+    
+    // MARK: - Navigation
+    
+    /*
+     This functionality should be delegated out so that the ListingsVC can be configured
+     to not only to show the ListedItemDetailVC when a row is tapped, but is not for the 
+     sake of not making this simple sample project too unwieldy.
+     */
+    func presentListedItemDetailViewController(listing: Listing) {
+        let detailViewController = ListedItemDetailViewController(
+            provider: dataSource.provider,
+            listedItemId: listing.id)
+        
+        show(detailViewController, sender: nil)
+    }
 }
 
 // MARK: - Table view delegate
@@ -68,7 +83,11 @@ extension ListingsViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        
+        if let listing = dataSource.listing(at: indexPath) {
+            presentListedItemDetailViewController(listing: listing)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 }
 

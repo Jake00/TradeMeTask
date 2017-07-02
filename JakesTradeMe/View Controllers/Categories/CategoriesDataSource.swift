@@ -71,6 +71,7 @@ extension CategoriesDataSource: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier, for: indexPath)
         let category = self.category(at: indexPath)
         cell.textLabel?.text = category?.name
+        cell.textLabel?.textColor = .darkGray
         return cell
     }
 }

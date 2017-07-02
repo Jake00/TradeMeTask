@@ -15,4 +15,5 @@ import BoltsSwift
 protocol RemoteDataProvider {
     func getCategories(number: String?) -> Task<[Category]>
     func searchListings(using search: SearchParameters) -> Task<SearchResults>
+    func getListedItem(id: Int64) -> Task<ListedItemDetail>
 }
