@@ -70,23 +70,37 @@ extension ListingsDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
         
         guard !listings.isEmpty else {
-            // swiftlint:disable:next force_cast line_length
-            let cell = tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath) as! LoadingCell
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: loadingCellIdentifier,
+                for: indexPath) as! LoadingCell
+            
             let noResultsText = NSLocalizedString("listings.no_listings",
                                                   value: "No listings",
                                                   comment: "No listings for category")
-            cell.titleLabel.text = hasLoadedOnce ? noResultsText : cell.loadingText
-            (hasLoadedOnce ? cell.activityIndicator.stopAnimating : cell.activityIndicator.startAnimating)()
+            
+            cell.titleLabel.text = hasLoadedOnce
+                ? noResultsText
+                : cell.loadingText
+            
+            (hasLoadedOnce
+                ? cell.activityIndicator.stopAnimating
+                : cell.activityIndicator.startAnimating)()
+            
             return cell
         }
         
-        // swiftlint:disable:next force_cast
-        let cell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier, for: indexPath) as! ListingCell
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: listingCellIdentifier,
+            for: indexPath) as! ListingCell
+        
         let listing = self.listing(at: indexPath)
         cell.titleLabel.text = listing?.title
-        cell.previewImageView.setImage(url: listing?.imageURL, placeholder: #imageLiteral(resourceName: "listingPlaceholder"))
+        cell.previewImageView.setImage(
+            url: listing?.imageURL,
+            placeholder: #imageLiteral(resourceName: "listingPlaceholder"))
         return cell
     }
 }
