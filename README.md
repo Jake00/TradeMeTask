@@ -1,6 +1,10 @@
 # Jake's TradeMe Task
 TradeMe iOS Client for browsing categories and listings.
 
+## Running
+1. Clone this repository.
+2. Open the Xcode project, hit build and run.
+
 ## Specification
 - Allows the user to browse the Trade Me categories and displays the first 20 listings in each category.
   - [Category browsing UI located here](https://github.com/Jake00/TradeMeTask/tree/4122ff0c3b74d3f69f583f58198e9abdb6ea15b7/JakesTradeMe/View%20Controllers/Categories)
