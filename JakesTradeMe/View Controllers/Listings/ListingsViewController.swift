@@ -42,7 +42,7 @@ class ListingsViewController: UIViewController, Loadable {
         tableView.tableFooterView = UIView()
         tableView.dataSource = dataSource
         tableView.delegate = self
-        tableView.separatorInset.left = 100
+        tableView.separatorInset.left = 0
         tableView.register(LoadingCell.self, forCellReuseIdentifier: dataSource.loadingCellIdentifier)
         tableView.register(ListingCell.self, forCellReuseIdentifier: dataSource.listingCellIdentifier)
     }

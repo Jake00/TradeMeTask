@@ -20,6 +20,8 @@ class ListingsDataSource: NSObject {
     
     weak var delegate: ListingsDataSourceDelegate?
     
+    fileprivate var hasLoadedOnce = false
+    
     let listingCellIdentifier = "ListingCell"
     let loadingCellIdentifier = "LoadingCell"
     
@@ -41,6 +43,7 @@ class ListingsDataSource: NSObject {
     func fetchListings(updating tableView: UITableView?) {
         let task = provider.searchListings(using: searchParameters)
             .continueOnSuccessWith(.mainThread) { result in
+                self.hasLoadedOnce = true
                 let isFirst = self.listings.isEmpty
                 self.listings = result.listings
                 if isFirst, !result.listings.isEmpty {
@@ -67,9 +70,18 @@ extension ListingsDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard !listings.isEmpty else {
-            return tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath)
+            // swiftlint:disable:next force_cast line_length
+            let cell = tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath) as! LoadingCell
+            let noResultsText = NSLocalizedString("listings.no_listings",
+                                                  value: "No listings",
+                                                  comment: "No listings for category")
+            cell.titleLabel.text = hasLoadedOnce ? noResultsText : cell.loadingText
+            (hasLoadedOnce ? cell.activityIndicator.stopAnimating : cell.activityIndicator.startAnimating)()
+            return cell
         }
+        
         // swiftlint:disable:next force_cast
         let cell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier, for: indexPath) as! ListingCell
         let listing = self.listing(at: indexPath)

@@ -13,6 +13,9 @@ class LoadingCell: UITableViewCell {
     let titleLabel = UILabel()
     let activityIndicator = UIActivityIndicatorView(activityIndicatorStyle: .gray)
     let centerLayoutGuide = UILayoutGuide()
+    let loadingText = NSLocalizedString("loading_cell.loading",
+                                        value: "Loading...",
+                                        comment: "Indicator that the application is loading.")
     
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -26,11 +29,10 @@ class LoadingCell: UITableViewCell {
     
     private func setup() {
         contentView.addLayoutGuide(centerLayoutGuide)
+        activityIndicator.hidesWhenStopped = true
         activityIndicator.startAnimating()
         titleLabel.textColor = .darkGray
-        titleLabel.text = NSLocalizedString("loading_cell.loading",
-                                            value: "Loading...",
-                                            comment: "Indicator that the application is loading.")
+        titleLabel.text = loadingText
         
         [titleLabel, activityIndicator].forEach {
             $0.translatesAutoresizingMaskIntoConstraints = false
