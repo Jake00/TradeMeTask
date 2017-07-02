@@ -15,6 +15,7 @@ class Listing: NSManagedObject {
     @NSManaged var id: Int64
     @NSManaged var title: String?
     @NSManaged var subtitle: String?
+    @NSManaged var imageURLRaw: String?
     @NSManaged var startDate: Date?
     @NSManaged var endDate: Date?
     @NSManaged var startPrice: NSDecimalNumber?
@@ -40,6 +41,16 @@ extension Listing {
     var reserveState: ReserveState {
         get { return ReserveState(rawValue: reserveStateRaw) ?? .notApplicable }
         set { reserveStateRaw = newValue.rawValue }
+    }
+}
+
+// MARK: - Image URL
+
+extension Listing {
+    
+    var imageURL: URL? {
+        get { return imageURLRaw.flatMap(URL.init(string:)) }
+        set { imageURLRaw = newValue?.absoluteString }
     }
 }
 
@@ -72,6 +83,7 @@ extension Listing {
         title = json["Title"] as? String
         subtitle = json["Subtitle"] as? String
         categoryNumber = json["Category"] as? String
+        imageURLRaw = json["PictureHref"] as? String
         startDate = date(json["StartDate"])
         endDate = date(json["EndDate"])
         startPrice = decimalNumber(json["StartPrice"])

@@ -22,6 +22,7 @@
         <attribute name="endDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
         <attribute name="hasBuyNow" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="id" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="imageURLRaw" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="isFeatured" optional="YES" attributeType="Boolean" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="reserveStateRaw" optional="YES" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
         <attribute name="startDate" optional="YES" attributeType="Date" usesScalarValueType="NO" syncable="YES"/>
@@ -32,6 +33,6 @@
     </entity>
     <elements>
         <element name="Category" positionX="-63" positionY="-18" width="128" height="255"/>
-        <element name="Listing" positionX="-45" positionY="99" width="128" height="225"/>
+        <element name="Listing" positionX="-45" positionY="99" width="128" height="240"/>
     </elements>
 </model>

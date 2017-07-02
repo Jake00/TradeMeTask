@@ -42,8 +42,9 @@ class ListingsViewController: UIViewController, Loadable {
         tableView.tableFooterView = UIView()
         tableView.dataSource = dataSource
         tableView.delegate = self
+        tableView.separatorInset.left = 100
         tableView.register(LoadingCell.self, forCellReuseIdentifier: dataSource.loadingCellIdentifier)
-        tableView.register(UITableViewCell.self, forCellReuseIdentifier: dataSource.listingCellIdentifier)
+        tableView.register(ListingCell.self, forCellReuseIdentifier: dataSource.listingCellIdentifier)
     }
     
     override func viewWillAppear(_ animated: Bool) {

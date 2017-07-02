@@ -70,9 +70,11 @@ extension ListingsDataSource: UITableViewDataSource {
         guard !listings.isEmpty else {
             return tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath)
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier, for: indexPath)
+        // swiftlint:disable:next force_cast
+        let cell = tableView.dequeueReusableCell(withIdentifier: listingCellIdentifier, for: indexPath) as! ListingCell
         let listing = self.listing(at: indexPath)
-        cell.textLabel?.text = listing?.title
+        cell.titleLabel.text = listing?.title
+        cell.previewImageView.setImage(url: listing?.imageURL, placeholder: #imageLiteral(resourceName: "listingPlaceholder"))
         return cell
     }
 }

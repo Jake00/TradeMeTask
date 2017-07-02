@@ -34,8 +34,9 @@
 		235D882B1F08B85400FD6956 /* Task+Void.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D882A1F08B85400FD6956 /* Task+Void.swift */; };
 		235D882D1F08BA1500FD6956 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D882C1F08BA1500FD6956 /* LoadingCell.swift */; };
 		23E939A41F08C1C0001F5424 /* UIViewController+Fetching.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939A31F08C1C0001F5424 /* UIViewController+Fetching.swift */; };
-		23E939A61F08C358001F5424 /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939A51F08C358001F5424 /* ListingCell.swift */; };
 		23E939AA1F08C710001F5424 /* Colours.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939A91F08C710001F5424 /* Colours.swift */; };
+		23E939AC1F08D526001F5424 /* ImageDownloader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939AB1F08D526001F5424 /* ImageDownloader.swift */; };
+		23E939AE1F08D9FF001F5424 /* ListingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 23E939AD1F08D9FF001F5424 /* ListingCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -80,8 +81,9 @@
 		235D882A1F08B85400FD6956 /* Task+Void.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Task+Void.swift"; sourceTree = "<group>"; };
 		235D882C1F08BA1500FD6956 /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		23E939A31F08C1C0001F5424 /* UIViewController+Fetching.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Fetching.swift"; sourceTree = "<group>"; };
-		23E939A51F08C358001F5424 /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 		23E939A91F08C710001F5424 /* Colours.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Colours.swift; sourceTree = "<group>"; };
+		23E939AB1F08D526001F5424 /* ImageDownloader.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageDownloader.swift; sourceTree = "<group>"; };
+		23E939AD1F08D9FF001F5424 /* ListingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListingCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -181,6 +183,7 @@
 				235D88261F08AEF400FD6956 /* RemoteDataProvider.swift */,
 				235D87E41F086E6A00FD6956 /* CoreDataClient.swift */,
 				235D87E61F0870AE00FD6956 /* Mapper.swift */,
+				23E939AB1F08D526001F5424 /* ImageDownloader.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -265,7 +268,7 @@
 			children = (
 				235D881E1F08AD6800FD6956 /* ListingsViewController.swift */,
 				235D88201F08AD7B00FD6956 /* ListingsDataSource.swift */,
-				23E939A51F08C358001F5424 /* ListingCell.swift */,
+				23E939AD1F08D9FF001F5424 /* ListingCell.swift */,
 			);
 			path = Listings;
 			sourceTree = "<group>";
@@ -410,11 +413,11 @@
 			files = (
 				235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */,
 				235D880B1F08A79100FD6956 /* JakesTradeMe.xcdatamodeld in Sources */,
+				23E939AC1F08D526001F5424 /* ImageDownloader.swift in Sources */,
 				235D881A1F08AD3400FD6956 /* CategoriesViewController.swift in Sources */,
 				235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */,
 				235D88211F08AD7B00FD6956 /* ListingsDataSource.swift in Sources */,
 				235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */,
-				23E939A61F08C358001F5424 /* ListingCell.swift in Sources */,
 				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
 				235D880C1F08A79100FD6956 /* Listing.swift in Sources */,
 				23E939A41F08C1C0001F5424 /* UIViewController+Fetching.swift in Sources */,
@@ -424,6 +427,7 @@
 				235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */,
 				235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */,
 				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
+				23E939AE1F08D9FF001F5424 /* ListingCell.swift in Sources */,
 				235D882D1F08BA1500FD6956 /* LoadingCell.swift in Sources */,
 				235D88271F08AEF400FD6956 /* RemoteDataProvider.swift in Sources */,
 				235D880A1F08A79100FD6956 /* Category.swift in Sources */,
