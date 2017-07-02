@@ -25,6 +25,7 @@ class Category: NSManagedObject {
     @NSManaged var isRestricted: Bool
     @NSManaged var parent: Category?
     @NSManaged var subcategories: Set<Category>
+    @NSManaged var listings: Set<Listing>
 }
 
 // MARK: - Area of business

@@ -20,7 +20,7 @@ final class Mapper {
         self.context = context
     }
     
-    // MARK: - Mapping
+    // MARK: - Categories
     
     func mapCategories(json: Any) throws -> [Category] {
         guard let json = json as? JSON else {
@@ -91,5 +91,31 @@ final class Mapper {
                     context: context)
         })
         return category
+    }
+    
+    // MARK: - Listings
+    
+    func mapListings(json: [JSON]) throws -> [Listing] {
+        return try context.performAndWait { context in
+            
+            let listingIDs = json.flatMap(Listing.id)
+            let listingRequest = Listing.fetchRequest(predicate: NSPredicate(format: "id IN %@", listingIDs))
+            let existingListings = try context.fetch(listingRequest)
+            
+            let categoryNumbers = json.flatMap(Category.id)
+            let categoriesRequest = Category.fetchRequest(predicate: NSPredicate(format: "number IN %@", categoryNumbers))
+            let existingCategories = try context.fetch(categoriesRequest)
+            
+            return json.flatMap { json -> Listing? in
+                guard let id = Listing.id(json: json) else { return nil }
+                
+                let listing = existingListings.first { $0.id == id }
+                    ?? Listing.create(in: context, id: id)
+                
+                listing.update(json: json)
+                listing.category = existingCategories.first { $0.number == listing.categoryNumber }
+                return listing
+            }
+        }
     }
 }

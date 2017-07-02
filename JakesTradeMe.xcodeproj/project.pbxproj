@@ -16,13 +16,16 @@
 		235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87D71F07594200FD6956 /* NetworkOperation.swift */; };
 		235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */; };
 		235D87DF1F0762CF00FD6956 /* BoltsSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */; };
-		235D87E31F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E11F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld */; };
 		235D87E51F086E6A00FD6956 /* CoreDataClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E41F086E6A00FD6956 /* CoreDataClient.swift */; };
 		235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E61F0870AE00FD6956 /* Mapper.swift */; };
-		235D87E91F08751200FD6956 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87E81F08751200FD6956 /* Category.swift */; };
 		235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */; };
 		235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */; };
 		235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D87EE1F088BA800FD6956 /* APIClient+TaskResponse.swift */; };
+		235D880A1F08A79100FD6956 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88041F08A79100FD6956 /* Category.swift */; };
+		235D880B1F08A79100FD6956 /* JakesTradeMe.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 235D88051F08A79100FD6956 /* JakesTradeMe.xcdatamodeld */; };
+		235D880C1F08A79100FD6956 /* Listing.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88071F08A79100FD6956 /* Listing.swift */; };
+		235D880D1F08A79100FD6956 /* SearchParameters.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D88091F08A79100FD6956 /* SearchParameters.swift */; };
+		235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 235D880E1F08A7A300FD6956 /* SearchResults.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,13 +52,16 @@
 		235D87D71F07594200FD6956 /* NetworkOperation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkOperation.swift; sourceTree = "<group>"; };
 		235D87DB1F07597C00FD6956 /* APIClient+Endpoints.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+Endpoints.swift"; sourceTree = "<group>"; };
 		235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = BoltsSwift.framework; path = Carthage/Build/iOS/BoltsSwift.framework; sourceTree = "<group>"; };
-		235D87E21F086CEC00FD6956 /* JakesTradeMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JakesTradeMe.xcdatamodel; sourceTree = "<group>"; };
 		235D87E41F086E6A00FD6956 /* CoreDataClient.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataClient.swift; sourceTree = "<group>"; };
 		235D87E61F0870AE00FD6956 /* Mapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mapper.swift; sourceTree = "<group>"; };
-		235D87E81F08751200FD6956 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		235D87EA1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObjectContext+Perform.swift"; sourceTree = "<group>"; };
 		235D87EC1F087DA900FD6956 /* NSManagedObject+Create.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSManagedObject+Create.swift"; sourceTree = "<group>"; };
 		235D87EE1F088BA800FD6956 /* APIClient+TaskResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "APIClient+TaskResponse.swift"; sourceTree = "<group>"; };
+		235D88041F08A79100FD6956 /* Category.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
+		235D88061F08A79100FD6956 /* JakesTradeMe.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = JakesTradeMe.xcdatamodel; sourceTree = "<group>"; };
+		235D88071F08A79100FD6956 /* Listing.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Listing.swift; sourceTree = "<group>"; };
+		235D88091F08A79100FD6956 /* SearchParameters.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchParameters.swift; sourceTree = "<group>"; };
+		235D880E1F08A7A300FD6956 /* SearchResults.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchResults.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,8 +145,8 @@
 		235D87BD1F0750ED00FD6956 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				235D87E11F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld */,
-				235D87E81F08751200FD6956 /* Category.swift */,
+				235D88031F08A79100FD6956 /* Managed Objects */,
+				235D88081F08A79100FD6956 /* Search */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -197,6 +203,25 @@
 				235D87DE1F0762CF00FD6956 /* BoltsSwift.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		235D88031F08A79100FD6956 /* Managed Objects */ = {
+			isa = PBXGroup;
+			children = (
+				235D88051F08A79100FD6956 /* JakesTradeMe.xcdatamodeld */,
+				235D88041F08A79100FD6956 /* Category.swift */,
+				235D88071F08A79100FD6956 /* Listing.swift */,
+			);
+			path = "Managed Objects";
+			sourceTree = "<group>";
+		};
+		235D88081F08A79100FD6956 /* Search */ = {
+			isa = PBXGroup;
+			children = (
+				235D88091F08A79100FD6956 /* SearchParameters.swift */,
+				235D880E1F08A7A300FD6956 /* SearchResults.swift */,
+			);
+			path = Search;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -338,17 +363,20 @@
 			buildActionMask = 2147483647;
 			files = (
 				235D87DA1F07594200FD6956 /* NetworkOperation.swift in Sources */,
+				235D880B1F08A79100FD6956 /* JakesTradeMe.xcdatamodeld in Sources */,
 				235D87EB1F087CA200FD6956 /* NSManagedObjectContext+Perform.swift in Sources */,
 				235D87C81F0750ED00FD6956 /* AppDelegate.swift in Sources */,
 				235D87DC1F07597C00FD6956 /* APIClient+Endpoints.swift in Sources */,
+				235D880C1F08A79100FD6956 /* Listing.swift in Sources */,
 				235D87D81F07594200FD6956 /* APIClient+Logging.swift in Sources */,
 				235D87ED1F087DA900FD6956 /* NSManagedObject+Create.swift in Sources */,
+				235D880D1F08A79100FD6956 /* SearchParameters.swift in Sources */,
 				235D87EF1F088BA800FD6956 /* APIClient+TaskResponse.swift in Sources */,
+				235D880F1F08A7A300FD6956 /* SearchResults.swift in Sources */,
 				235D87E71F0870AE00FD6956 /* Mapper.swift in Sources */,
-				235D87E91F08751200FD6956 /* Category.swift in Sources */,
+				235D880A1F08A79100FD6956 /* Category.swift in Sources */,
 				235D87D91F07594200FD6956 /* APIClient.swift in Sources */,
 				235D87E51F086E6A00FD6956 /* CoreDataClient.swift in Sources */,
-				235D87E31F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -574,12 +602,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCVersionGroup section */
-		235D87E11F086CEC00FD6956 /* JakesTradeMe.xcdatamodeld */ = {
+		235D88051F08A79100FD6956 /* JakesTradeMe.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
-				235D87E21F086CEC00FD6956 /* JakesTradeMe.xcdatamodel */,
+				235D88061F08A79100FD6956 /* JakesTradeMe.xcdatamodel */,
 			);
-			currentVersion = 235D87E21F086CEC00FD6956 /* JakesTradeMe.xcdatamodel */;
+			currentVersion = 235D88061F08A79100FD6956 /* JakesTradeMe.xcdatamodel */;
 			path = JakesTradeMe.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;
