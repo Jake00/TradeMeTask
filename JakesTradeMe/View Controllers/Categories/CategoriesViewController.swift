@@ -70,9 +70,10 @@ class CategoriesViewController: UIViewController, Loadable {
         let listingsViewController = ListingsViewController(provider: dataSource.provider)
         listingsViewController.dataSource.searchParameters.categoryNumber = category?.number
         
-        let titleFormat = NSLocalizedString("listings.title_format",
-                                            value: "Listings for %@",
-                                            comment: "The title format for listings in a category. eg. 'Listings for Art'")
+        let titleFormat = NSLocalizedString(
+            "listings.title_format",
+            value: "Listings for %@",
+            comment: "The title format for listings in a category. eg. 'Listings for Art'")
         listingsViewController.title = String.localizedStringWithFormat(titleFormat, category?.name ?? "")
         
         let navigationController = UINavigationController()

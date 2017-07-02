@@ -229,12 +229,11 @@ extension UIImageView {
         }
         ImageDownloader.shared.load(url: url) { [weak self] image in
             guard let s = self else { return }
+            let setImage = { s.image = image }
             if options.contains(.fade) {
-                s.alpha = 0
-                s.image = image
-                UIView.animate(withDuration: 0.2) { s.alpha = 1 }
+                UIView.transition(with: s, duration: 0.2, options: .transitionCrossDissolve, animations: setImage, completion: nil)
             } else {
-                s.image = image
+                setImage()
             }
             s.activeImageLoadURL = nil
             s.activityIndicatorView?.stopAnimating()
