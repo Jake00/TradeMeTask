@@ -29,7 +29,7 @@ final class Mapper {
         
         return try context.performAndWait { context in
             
-            func mapCategories(json: JSON) throws -> [Category] {
+            func doMapping(json: JSON) throws -> [Category] {
                 guard let id = Category.id(json: json), !id.isEmpty else {
                     return []
                 }
@@ -49,12 +49,12 @@ final class Mapper {
             // We map all of the subcategories and return them, ignoring the root element.
             guard let id = Category.id(json: json), !id.isEmpty else {
                 return try Category.subcategories(json: json)
-                    .flatMap(mapCategories(json:))
+                    .flatMap(doMapping(json:))
             }
             
             // There is no root element as a specific category was requested.
             // In this case we map the single category and return it as an array of one.
-            return try mapCategories(json: json)
+            return try doMapping(json: json)
         }
     }
     
