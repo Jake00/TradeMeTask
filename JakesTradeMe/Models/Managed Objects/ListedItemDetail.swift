@@ -87,3 +87,21 @@ extension ListedItemDetail {
         photosJSON = json["Photos"] as? [JSON] ?? []
     }
 }
+
+// MARK: - Equatable
+
+extension ListedItemDetail {
+    
+    static func == (lhs: ListedItemDetail, rhs: ListedItemDetail) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+// MARK: - Hashable
+
+extension ListedItemDetail {
+    
+    override var hashValue: Int {
+        return id.hashValue
+    }
+}

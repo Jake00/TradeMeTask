@@ -17,6 +17,12 @@ class CategoriesDataSource: NSObject {
     
     var categories: [Category] = []
     
+    var selectedCategory: Category? {
+        didSet {
+            categories = selectedCategory?.subcategories.sorted() ?? []
+        }
+    }
+    
     weak var delegate: CategoriesDataSourceDelegate?
     
     let categoryCellIdentifier = "CategoryCell"
@@ -65,10 +71,31 @@ extension CategoriesDataSource: UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        // swiftlint:disable force_cast
+        
         guard !categories.isEmpty else {
-            return tableView.dequeueReusableCell(withIdentifier: loadingCellIdentifier, for: indexPath)
+            let cell = tableView.dequeueReusableCell(
+                withIdentifier: loadingCellIdentifier,
+                for: indexPath) as! LoadingCell
+            
+            let load = selectedCategory == nil
+            cell.titleLabel.text = load
+                ? cell.loadingText
+                : NSLocalizedString(
+                    "categories.no_subcategories",
+                    value: "No subcategories",
+                    comment: "Cell text when there are no subcategories to display.")
+            (load
+                ? cell.activityIndicator.startAnimating
+                : cell.activityIndicator.stopAnimating)()
+            
+            return cell
         }
-        let cell = tableView.dequeueReusableCell(withIdentifier: categoryCellIdentifier, for: indexPath)
+        
+        let cell = tableView.dequeueReusableCell(
+            withIdentifier: categoryCellIdentifier,
+            for: indexPath)
+        
         let category = self.category(at: indexPath)
         cell.textLabel?.text = category?.name
         cell.textLabel?.textColor = .darkGray

@@ -11,10 +11,11 @@ import BoltsSwift
 
 class CategoriesViewController: UIViewController, Loadable {
     
-    var tableView: UITableView {
-        // swiftlint:disable:next force_cast
-        return super.view as! UITableView
-    }
+    // Loaded in `loadView()`.
+    private(set) var tableView: UITableView!
+    private(set) var headerView: UIView!
+    private(set) var headerLabel: UILabel!
+    private(set) var showListingsButton: UIBarButtonItem!
     
     var isLoading = false
     
@@ -38,25 +39,93 @@ class CategoriesViewController: UIViewController, Loadable {
     // MARK: - View controller
     
     override func loadView() {
-        let tableView = UITableView()
-        self.view = tableView
+        view = UIView()
+        setupTableView()
+        setupHeaderView()
+        setupShowListingsButton()
+        
+        // Hide back navigation button title
+        navigationItem.backBarButtonItem = UIBarButtonItem(
+            title: "", style: .plain, target: nil, action: nil)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if dataSource.selectedCategory == nil, dataSource.categories.isEmpty {
+            dataSource.fetchCategories(updating: tableView)
+        }
+        if let selectedIndexPath = tableView.indexPathForSelectedRow {
+            tableView.deselectRow(at: selectedIndexPath, animated: animated)
+        }
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        tableView.contentInset.top = headerView.frame.maxY
+        tableView.scrollIndicatorInsets.top = headerView.frame.maxY
+    }
+    
+    // MARK: - Subviews init
+    
+    private func setupTableView() {
+        tableView = UITableView(frame: view.bounds)
+        tableView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         tableView.backgroundColor = .offWhite
         tableView.tableFooterView = UIView()
         tableView.dataSource = dataSource
         tableView.delegate = self
         tableView.register(LoadingCell.self, forCellReuseIdentifier: dataSource.loadingCellIdentifier)
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: dataSource.categoryCellIdentifier)
+        view.addSubview(tableView)
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        
-        if dataSource.categories.isEmpty {
-            dataSource.fetchCategories(updating: tableView)
-        }
-        if let selectedIndexPath = tableView.indexPathForSelectedRow {
-            tableView.deselectRow(at: selectedIndexPath, animated: animated)
-        }
+    private func setupHeaderView() {
+        let toolbar = UIToolbar()
+        toolbar.delegate = self
+        headerView = toolbar
+        headerView.translatesAutoresizingMaskIntoConstraints = false
+        headerLabel = UILabel()
+        headerLabel.translatesAutoresizingMaskIntoConstraints = false
+        headerLabel.textColor = .darkGray
+        headerLabel.textAlignment = .center
+        headerLabel.numberOfLines = 0
+        let separator = NSLocalizedString("categories.path_joiner",
+                                          value: " > ",
+                                          comment: "The separator between category levels.")
+        headerLabel.text = dataSource.selectedCategory?.pathComponents.joined(separator: separator)
+        view.addSubview(headerView)
+        headerView.addSubview(headerLabel)
+        let margin = headerView.layoutMarginsGuide
+        NSLayoutConstraint.activate([
+            headerView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
+            headerView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            headerView.topAnchor.constraint(equalTo: topLayoutGuide.bottomAnchor),
+            headerLabel.leadingAnchor.constraint(equalTo: margin.leadingAnchor),
+            headerLabel.trailingAnchor.constraint(equalTo: margin.trailingAnchor),
+            headerLabel.topAnchor.constraint(equalTo: margin.topAnchor),
+            headerLabel.bottomAnchor.constraint(equalTo: margin.bottomAnchor)
+            ])
+    }
+    
+    private func setupShowListingsButton() {
+        let showListingsTitle = NSLocalizedString(
+            "categories.show_listings",
+            value: "Show listings",
+            comment: "Button title for showing listings for the selected category")
+        showListingsButton = UIBarButtonItem(
+            title: showListingsTitle,
+            style: .plain,
+            target: self,
+            action: #selector(showListingsButtonPressed(_:)))
+        navigationItem.rightBarButtonItem = showListingsButton
+        showListingsButton.isEnabled = dataSource.selectedCategory?.pathComponents.isEmpty == false
+    }
+    
+    // MARK: - Interface actions
+    
+    func showListingsButtonPressed(_ sender: UIBarButtonItem) {
+        presentListingsViewController(category: dataSource.selectedCategory)
     }
     
     // MARK: - Navigation
@@ -80,6 +149,12 @@ class CategoriesViewController: UIViewController, Loadable {
         navigationController.viewControllers = [listingsViewController]
         showDetailViewController(navigationController, sender: nil)
     }
+    
+    func presentNextCategoriesViewController(category: Category) {
+        let categoriesViewController = CategoriesViewController(provider: dataSource.provider)
+        categoriesViewController.dataSource.selectedCategory = category
+        show(categoriesViewController, sender: nil)
+    }
 }
 
 // MARK: - Table view delegate
@@ -91,7 +166,11 @@ extension CategoriesViewController: UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        presentListingsViewController(category: dataSource.category(at: indexPath))
+        if let category = dataSource.category(at: indexPath) {
+            presentNextCategoriesViewController(category: category)
+        } else {
+            tableView.deselectRow(at: indexPath, animated: true)
+        }
     }
 }
 
@@ -101,5 +180,14 @@ extension CategoriesViewController: CategoriesDataSourceDelegate {
     
     func categoriesDataSource(_ dataSource: CategoriesDataSource, isFetchingWith task: Task<Void>) {
         fetch(task)
+    }
+}
+
+// MARK: - Toolbar delegate
+
+extension CategoriesViewController: UIToolbarDelegate {
+    
+    func position(for bar: UIBarPositioning) -> UIBarPosition {
+        return .top
     }
 }

@@ -52,6 +52,24 @@ extension Category {
     }
 }
 
+// MARK: - Helpers
+
+extension Category {
+    
+    private func buildPathComponents(accumulator: inout [String]) {
+        parent?.buildPathComponents(accumulator: &accumulator)
+        if let name = name {
+            accumulator.append(name)
+        }
+    }
+    
+    var pathComponents: [String] {
+        var components: [String] = []
+        buildPathComponents(accumulator: &components)
+        return components
+    }
+}
+
 // MARK: - Object context helpers
 
 extension Category {
@@ -97,5 +115,33 @@ extension Category {
         hasClassifieds = json["HasClassifieds"] as? Bool ?? false
         isRestricted = json["IsRestricted"] as? Bool ?? false
         hasLegalNotice = json["HasLegalNotice"] as? Bool ?? false
+    }
+}
+
+// MARK: - Equatable 
+
+extension Category {
+    
+    static func == (lhs: Category, rhs: Category) -> Bool {
+        return lhs.number == rhs.number
+    }
+}
+
+// MARK: - Hashable
+
+extension Category {
+    
+    override var hashValue: Int {
+        return number.hashValue
+    }
+}
+
+// MARK: - Comparable
+
+extension Category: Comparable {
+    
+    static func < (lhs: Category, rhs: Category) -> Bool {
+        guard let lhsName = lhs.name, let rhsName = rhs.name else { return false }
+        return lhsName.compare(rhsName, options: .caseInsensitive) == .orderedAscending
     }
 }

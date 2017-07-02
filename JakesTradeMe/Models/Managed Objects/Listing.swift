@@ -86,3 +86,21 @@ extension Listing {
         reserveStateRaw = (json["ReserveState"] as? Int).map(Int64.init) ?? 0
     }
 }
+
+// MARK: - Equatable
+
+extension Listing {
+    
+    static func == (lhs: Listing, rhs: Listing) -> Bool {
+        return lhs.id == rhs.id
+    }
+}
+
+// MARK: - Hashable
+
+extension Listing {
+    
+    override var hashValue: Int {
+        return id.hashValue
+    }
+}
